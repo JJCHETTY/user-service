@@ -80,7 +80,7 @@ jobs:
           registryUrl: ${{ env.REGISTRY }}
           registryUsername: ${{ github.actor }}
           registryPassword: ${{ secrets.GH_PAT }}
-          environmentVariables: |
+          environmentVariables: >-
             QUARKUS_DATASOURCE_JDBC_URL=jdbc:postgresql://recipe-db-server-123.postgres.database.azure.com:5432/user_db?sslmode=require
             QUARKUS_DATASOURCE_USERNAME=${{ secrets.DB_USER }}
             QUARKUS_DATASOURCE_PASSWORD=${{ secrets.DB_PASSWORD }}
