@@ -75,7 +75,7 @@ jobs:
           containerAppEnvironment: ${{ env.CONTAINER_APP_ENV }}
           containerAppName: ${{ env.CONTAINER_APP_NAME }}
           imageToDeploy: ${{ steps.image.outputs.name }}:${{ github.sha }}
-          targetPort: 8081
+          targetPort: 8080
           ingress: external
           registryUrl: ${{ env.REGISTRY }}
           registryUsername: ${{ github.actor }}
@@ -84,8 +84,8 @@ jobs:
             JDBC_DATABASE_URL=jdbc:postgresql://recipe-db-server-123.postgres.database.azure.com:5432/user_db?sslmode=require
             DB_USER=${{ secrets.DB_USER }}
             DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-            GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}
-            GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}
+            QUARKUS_OIDC_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}
+            QUARKUS_OIDC_CREDENTIALS_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}
             LOGIN_SUCCESS_URI=${{ secrets.LOGIN_SUCCESS_URI }}
             JWT_PRIVATE_KEY_LOCATION=/mnt/secrets/jwt-private-key
             JWT_PUBLIC_KEY_LOCATION=/mnt/secrets/jwt-public-key
