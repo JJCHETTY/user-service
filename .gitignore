@@ -1,0 +1,10 @@
+.idea/
+.env
+.env.*
+!.env.example
+**/*.pem
+**/*.key
+**/keys/
+**/jwt/
+privateKey.pem
+publicKey.pem

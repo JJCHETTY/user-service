@@ -1,0 +1,15 @@
+*
+!target/*-runner
+!target/*-runner.jar
+!target/lib/*
+!target/quarkus-app/*
+
+# Never include local configuration or signing keys in the image build context.
+.env
+.env.*
+*.pem
+*.key
+keys/
+jwt/
+privateKey.pem
+publicKey.pem
