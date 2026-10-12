@@ -75,7 +75,7 @@ jobs:
           containerAppEnvironment: ${{ env.CONTAINER_APP_ENV }}
           containerAppName: ${{ env.CONTAINER_APP_NAME }}
           imageToDeploy: ${{ steps.image.outputs.name }}:${{ github.sha }}
-          targetPort: 8080
+          targetPort: 8081
           ingress: external
           registryUrl: ${{ env.REGISTRY }}
           registryUsername: ${{ github.actor }}

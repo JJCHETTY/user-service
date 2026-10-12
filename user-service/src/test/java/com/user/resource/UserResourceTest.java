@@ -29,6 +29,15 @@ class UserResourceTest {
     }
 
     @Test
+    void loginPathIsProtectedAndNotAnUnmatchedRoute() {
+        given()
+                .redirects().follow(false)
+                .when().get("/api/v1/auth/login")
+                .then()
+                .statusCode(401);
+    }
+
+    @Test
     void currentUserReadsIdFromTheSignedApplicationToken() {
         String token = Jwt.issuer("https://recipe-app.com/issuer")
                 .subject("test@example.com")

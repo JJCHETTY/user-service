@@ -49,11 +49,24 @@ public class AuthResource {
     Instance<UserInfo> userInfo;
 
     @GET
+    @Path("/login")
+    @Authenticated
+    @Produces("text/plain")
+    @Transactional
+    public Response login() {
+        return completeLogin();
+    }
+
+    @GET
     @Path("/google-login")
     @Authenticated
     @Produces("text/plain")
     @Transactional
     public Response googleLogin() {
+        return completeLogin();
+    }
+
+    private Response completeLogin() {
         String email = userInfo.isResolvable() ? userInfo.get().getString("email") : null;
         if (email == null || email.isBlank()) {
             throw new BadRequestException("Google account did not provide an email address");
@@ -63,9 +76,9 @@ public class AuthResource {
         UserEntity user = userRepository.findByEmail(normalizedEmail)
                 .orElseGet(() -> createUser(normalizedEmail));
 
-        String code = tokenExchangeStore.issue(appTokenIssuer.issue(user));
+        String token = appTokenIssuer.issue(user);
         URI redirectUri = UriBuilder.fromUri(loginSuccessUri)
-                .fragment("code=" + code)
+                .fragment("token=" + token)
                 .build();
         return Response.seeOther(redirectUri).build();
     }
