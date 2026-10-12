@@ -79,11 +79,11 @@ jobs:
           ingress: external
           registryUrl: ${{ env.REGISTRY }}
           registryUsername: ${{ github.actor }}
-          registryPassword: ${{ secrets.GITHUB_TOKEN }}
+          registryPassword: ${{ secrets.GH_PAT }}
           environmentVariables: |
-            JDBC_DATABASE_URL=jdbc:postgresql://recipe-db-server-123.postgres.database.azure.com:5432/user_db?sslmode=require
-            DB_USER=${{ secrets.DB_USER }}
-            DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+            QUARKUS_DATASOURCE_JDBC_URL=jdbc:postgresql://recipe-db-server-123.postgres.database.azure.com:5432/user_db?sslmode=require
+            QUARKUS_DATASOURCE_USERNAME=${{ secrets.DB_USER }}
+            QUARKUS_DATASOURCE_PASSWORD=${{ secrets.DB_PASSWORD }}
             QUARKUS_OIDC_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}
             QUARKUS_OIDC_CREDENTIALS_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}
             LOGIN_SUCCESS_URI=${{ secrets.LOGIN_SUCCESS_URI }}
